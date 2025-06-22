@@ -1,8 +1,9 @@
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
-import Providers from "./providers"; // If you use context/auth
 import Navbar from "@/components/Navbar";
-import { ReactNode } from "react";
+import Providers from "./providers"; // If you use Redux/Context
+import type { ReactNode } from "react";
+
 
 const inter = Inter({ subsets: ["latin"] });
 

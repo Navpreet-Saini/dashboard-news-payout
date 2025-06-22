@@ -1,16 +1,21 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get('__Secure-next-auth.session-token')?.value || request.cookies.get('next-auth.session-token')?.value;
-
-  if (!token && request.nextUrl.pathname.startsWith('/admin')) {
-    return NextResponse.redirect(new URL('/unauthorized', request.url));
+export default withAuth(
+  function middleware(req) {
+    // Protect admin routes
+    if (req.nextUrl.pathname.startsWith("/admin") && 
+        req.nextauth.token?.role !== "admin") {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => !!token,
+    },
   }
+);
 
-  return NextResponse.next();
-}
-
-export const config = {
-  matcher: ['/admin/:path*'],
+export const config = { 
+  matcher: ["/admin/:path*", "/payouts"] 
 };

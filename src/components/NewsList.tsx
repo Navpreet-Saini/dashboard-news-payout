@@ -16,15 +16,17 @@ export default function NewsList() {
   const [category, setCategory] = useState("general");
   const [searchTerm, setSearchTerm] = useState("");
   const [lastUpdated, setLastUpdated] = useState("");
+  
 
   const categories = ["general", "technology", "business", "health", "science", "sports", "entertainment"];
 
   const fetchNews = async () => {
-    const res = await fetch(`/api/news?category=${category}`);
-    const data = await res.json();
-    setArticles(data.articles);
-    setLastUpdated(new Date().toLocaleString());
-  };
+  const res = await fetch(`/api/news?category=${category}`);
+  const data = await res.json();
+  setArticles(Array.isArray(data.articles) ? data.articles : []);
+  setLastUpdated(new Date().toLocaleString());
+};
+
 
   useEffect(() => {
     fetchNews();

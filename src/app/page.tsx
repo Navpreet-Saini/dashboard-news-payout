@@ -1,10 +1,11 @@
-'use client';
+"use client";
+import SessionProvider from "@/components/SessionProvider";
 import NewsList from "@/components/NewsList";
 
 export default function Home() {
   return (
-    <main className="space-y-6">
+    <SessionProvider>
       <NewsList />
-    </main>
+    </SessionProvider>
   );
 }
