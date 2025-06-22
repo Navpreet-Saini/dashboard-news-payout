@@ -96,22 +96,22 @@ This project is a responsive news dashboard built with Next.js (App Router) and 
 ## Screenshots
 
 ### Filter 
-![Filter Screenshot](\public\screenshots\category.png)
+/[Filter Screenshot](\public\screenshots\category.png)
 
 ### Dark Mode
-![Dark Mode Screenshot](\public\screenshots\darkmode.png)
+/[Dark Mode Screenshot](\public\screenshots\darkmode.png)
 
 ### Login page
-![Login Screenshot](\public\screenshots\login.png)
+/[Login Screenshot](\public\screenshots\login.png)
 
 ### Offline loading IndexedDB
-![Offline Screenshot](\public\screenshots\offlinemode.png)
+/[Offline Screenshot](\public\screenshots\offlinemode.png)
 
 ### Payout to admin and export files in csv and pdf Mode
-![Dark Mode Screenshot](\public\screenshots\payout&exportFiles.png)
+/[Dark Mode Screenshot](\public\screenshots\payout&exportFiles.png)
 
 ###  search Article page
-![Search Screenshot](\public\screenshots\search.png)
+/[Search Screenshot](\public\screenshots\search.png)
 
 
 ## License
