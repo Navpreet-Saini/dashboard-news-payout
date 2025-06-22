@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
-
+import DarkModeToggle from "@/components/DarkModeToggle";
 export default function Navbar() {
   const { data: session } = useSession();
 
@@ -12,7 +12,10 @@ export default function Navbar() {
         <div className="flex space-x-4 items-center">
           <Link href="/" className="text-gray-700 hover:text-blue-600 transition">Home</Link>
           <Link href="/dashboard" className="text-gray-700 hover:text-blue-600 transition">Dashboard</Link>
-          <Link href="/payouts" className="text-gray-700 hover:text-blue-600 transition">Payouts</Link>
+          {/* Only show Payouts for admin users */}
+          {session?.user?.role === "admin" && (
+            <Link href="/payouts" className="text-gray-700 hover:text-blue-600 transition">Payouts</Link>
+          )}
           {session ? (
             <>
               <span className="text-gray-600 text-sm mr-2">{session.user?.email}</span>
@@ -30,6 +33,7 @@ export default function Navbar() {
               </span>
             </Link>
           )}
+          <DarkModeToggle />
         </div>
       </div>
     </nav>

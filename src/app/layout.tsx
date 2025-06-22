@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Providers from "./providers"; // If you use Redux/Context
 import type { ReactNode } from "react";
-
+import DarkModeToggle from "@/components/DarkModeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
