@@ -1,36 +1,35 @@
-// src/components/Navbar.tsx
-
-'use client';
-
-import { signIn, signOut, useSession } from "next-auth/react";
+"use client";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Navbar() {
-  const { data: session, status } = useSession();
-
-  if (status === "loading") return null;
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex items-center gap-4">
-      {session ? (
-        <>
-          <p className="text-sm text-gray-700">
-            Signed in as <strong>{session.user?.email}</strong>
-          </p>
-          <button
-            onClick={() => signOut()}
-            className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
-          >
-            Sign Out
-          </button>
-        </>
-      ) : (
-        <button
-          onClick={() => signIn("google")}
-          className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm"
-        >
-          Sign In with Google
+    <nav className="bg-white shadow sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <Link href="/" className="text-2xl font-bold text-blue-600">NewsDash</Link>
+        <div className="hidden md:flex space-x-6">
+          <Link href="/" className="text-gray-700 hover:text-blue-600 transition">Home</Link>
+          <Link href="/dashboard" className="text-gray-700 hover:text-blue-600 transition">Dashboard</Link>
+          <Link href="/payouts" className="text-gray-700 hover:text-blue-600 transition">Payouts</Link>
+        </div>
+        <button className="md:hidden" onClick={() => setOpen(!open)}>
+          <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2"
+            viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+          </svg>
         </button>
+      </div>
+      {/* Mobile Menu */}
+      {open && (
+        <div className="md:hidden bg-white border-t">
+          <Link href="/" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Home</Link>
+          <Link href="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Dashboard</Link>
+          <Link href="/payouts" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Payouts</Link>
+        </div>
       )}
-    </div>
+    </nav>
   );
 }
